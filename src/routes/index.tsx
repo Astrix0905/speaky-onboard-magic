@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Mic,
@@ -55,20 +56,39 @@ function Hero() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_0%,var(--color-brand-sky-soft),transparent)]" />
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.1fr_1fr] lg:py-28">
         <div>
-          <div className="speaky-fade-up inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted-foreground">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted-foreground"
+          >
             <span className="speaky-pulse h-1.5 w-1.5 rounded-full bg-brand-green" />
             Now in private beta — 200 teams onboarded
-          </div>
-          <h1 className="speaky-fade-up speaky-delay-1 mt-5 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+            className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl"
+          >
             A <span className="text-brand-orange">30-second</span> voice intro
             for every visitor.
-          </h1>
-          <p className="speaky-fade-up speaky-delay-2 mt-5 max-w-xl text-lg text-muted-foreground">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mt-5 max-w-xl text-lg text-muted-foreground"
+          >
             Speaky drops a small widget on your site that greets visitors with a
             real, personalized voice from your founder. More trust, more
             activation, fewer ghosted demos.
-          </p>
-          <div className="speaky-fade-up speaky-delay-3 mt-8 flex flex-wrap items-center gap-3">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
             <Link
               to="/dashboard"
               className="inline-flex items-center gap-2 rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-orange/20 transition hover:brightness-95"
@@ -81,7 +101,7 @@ function Hero() {
             >
               See live demo
             </Link>
-          </div>
+          </motion.div>
           <div className="mt-6 flex items-center gap-6 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-brand-green" /> No code required</span>
             <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-brand-green" /> 4-min setup</span>
@@ -90,7 +110,12 @@ function Hero() {
         </div>
 
         {/* Hero preview card with mock browser + widget */}
-        <div className="speaky-scale-in speaky-delay-2 relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 }}
+          className="relative"
+        >
           <div className="relative rounded-2xl border border-border bg-surface p-2 shadow-2xl shadow-brand-navy/10">
             <div className="flex items-center gap-1.5 px-3 py-2">
               <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -131,7 +156,7 @@ function Hero() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -186,17 +211,20 @@ function HowItWorks() {
       </div>
       <div className="mt-14 grid gap-6 md:grid-cols-3">
         {steps.map((s, i) => (
-          <div
+          <motion.div
             key={s.title}
-            className="speaky-fade-up rounded-2xl border border-border bg-surface p-7"
-            style={{ animationDelay: `${i * 0.08}s` }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.08 }}
+            className="rounded-2xl border border-border bg-surface p-7"
           >
             <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${s.color}`}>
               <s.icon className="h-5 w-5" />
             </div>
             <h3 className="mt-5 text-xl font-semibold">{s.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
