@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -12,8 +11,8 @@
  */
 
 @theme inline {
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -180,3 +179,18 @@
   animation: wave-bar 0.9s ease-in-out infinite;
   transform-origin: center;
 }
+
+/* Reusable entrance transitions (replace framer-motion) */
+@keyframes speaky-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes speaky-scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.speaky-fade-up { animation: speaky-fade-up 0.4s ease-out both; }
+.speaky-scale-in { animation: speaky-scale-in 0.35s ease-out both; }
+.speaky-delay-1 { animation-delay: 0.05s; }
+.speaky-delay-2 { animation-delay: 0.1s; }
+.speaky-delay-3 { animation-delay: 0.15s; }
